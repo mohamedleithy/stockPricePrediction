@@ -5,7 +5,9 @@ from traceback import print_tb
 from unicodedata import name
 from attr import attr, attrs
 from bs4 import BeautifulSoup
+from certifi import contents
 from matplotlib.pyplot import text
+from more_itertools import unique_everseen
 import requests, re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -18,7 +20,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
-from more_itertools import unique_everseen 
 
 
 
@@ -43,28 +44,28 @@ def getAaplTweets():
 
     url = 'https://twitter.com/search?q=%24AAPL&src=typeahead_click&f=top'
     
-    browser = webdriver.Chrome(executable_path='/Users/leithy/Downloads/chromedriver')
+    # browser = webdriver.Chrome(executable_path='/Users/leithy/Downloads/chromedriver')
 
-    browser.get(url)
-    time.sleep(30)
+    # browser.get(url)
+    # time.sleep(30)
 
       
-    elem = browser.find_element_by_tag_name("html")
+    # elem = browser.find_element_by_tag_name("html")
 
-    no_of_pagedowns = 10000
+    # no_of_pagedowns = 10000
 
-    f = open("aaplTweets.html", "w")
+    # f = open("aaplTweets.html", "w")
 
-    while no_of_pagedowns:
-        elem.send_keys(Keys.PAGE_DOWN)
-        time.sleep(0.5)
-        if(no_of_pagedowns%15==0):
-            content = browser.page_source
-            f.write(content)
-        no_of_pagedowns-=1
-        print(no_of_pagedowns)
+    # while no_of_pagedowns:
+    #     elem.send_keys(Keys.PAGE_DOWN)
+    #     time.sleep(0.5)
+    #     if(no_of_pagedowns%15==0):
+    #         content = browser.page_source
+    #         f.write(content)
+    #     no_of_pagedowns-=1
+    #     print(no_of_pagedowns)
 
-    f.close()
+    # f.close()
     
     with open('aaplTweets.html', 'r') as f:
 
